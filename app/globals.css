@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* iOS Safari: 100dvh fallback for full-screen modal (task 11.2) */
+.emergency-modal-full {
+  height: 100dvh;
+  /* stylelint-disable-next-line */
+  height: -webkit-fill-available;
+}
