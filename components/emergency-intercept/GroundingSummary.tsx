@@ -4,6 +4,7 @@ import { useEmergencyInterceptStore } from '@/store/emergency-intercept'
 import { useWizardCopy } from '@/lib/emergency-intercept/use-wizard-copy'
 import { FALLBACK_STORIES } from '@/lib/emergency-intercept/fallback-stories'
 import { WIZARD_COPY } from '@/lib/emergency-intercept/copy'
+import type { SuccessStory } from '@/store/progress-logging'
 
 interface Story {
   id: string
@@ -14,7 +15,8 @@ interface Story {
 function useUserStories(): Story[] {
   try {
     const useProgressStore = require('@/store/progress-logging')?.useProgressStore
-    return useProgressStore?.((s: { stories: Story[] }) => s.stories) ?? []
+    const raw: SuccessStory[] = useProgressStore?.((s: { stories: SuccessStory[] }) => s.stories) ?? []
+    return raw.map((s) => ({ id: s.id, text: s.content }))
   } catch {
     return []
   }

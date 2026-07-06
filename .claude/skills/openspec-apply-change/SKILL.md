@@ -73,13 +73,18 @@ Implement tasks from an OpenSpec change.
    - Show which task is being worked on
    - Make the code changes required
    - Keep changes minimal and focused
-   - Mark task complete in the tasks file: `- [ ]` → `- [x]`
+   - **Write tests** for the new behavior:
+     - Check `__tests__/<feature>/` and `lib/<feature>/*.test.ts` for existing test patterns and conventions
+     - Add unit or integration tests covering the happy path, edge cases, and tone-mode variants where relevant
+     - Co-locate tests with the feature (`lib/<feature>/<name>.test.ts`) or in `__tests__/<feature>/` — match the existing pattern
+   - **Run tests**: execute `npm test` and fix any failures before proceeding
+   - Mark task complete in the tasks file: `- [ ]` → `- [x]` only after tests pass
    - Continue to next task
 
    **Pause if:**
    - Task is unclear → ask for clarification
    - Implementation reveals a design issue → suggest updating artifacts
-   - Error or blocker encountered → report and wait for guidance
+   - Tests keep failing after 2 fix attempts → report the blocker and wait for guidance
    - User interrupts
 
 7. **On completion or pause, show status**
@@ -87,7 +92,8 @@ Implement tasks from an OpenSpec change.
    Display:
    - Tasks completed this session
    - Overall progress: "N/M tasks complete"
-   - If all done: suggest archive
+   - Test results summary (pass/fail counts from last `npm test` run)
+   - If all done: suggest running `/eval-feature` for a quality pass, then archive
    - If paused: explain why and wait for guidance
 
 **Output During Implementation**

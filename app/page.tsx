@@ -3,6 +3,7 @@ import { TopTasksPanel } from '@/components/dashboard/TopTasksPanel'
 import { StoryCarousel } from '@/components/dashboard/StoryCarousel'
 import { ProgressLoggingPanel } from '@/components/progress-logging/ProgressLoggingPanel'
 import { ToneModeSwitcher } from '@/components/ToneModeSwitcher'
+import { SignOutButton } from '@/components/auth-onboarding/SignOutButton'
 
 export default function Home() {
   return (
@@ -13,7 +14,10 @@ export default function Home() {
             <h1 className="text-[28px] font-bold leading-10 text-ds-text-primary">Bye Binge</h1>
             <p className="text-[14px] text-ds-text-secondary mt-1">Your daily progress</p>
           </div>
-          <ToneModeSwitcher />
+          <div className="flex items-center gap-2">
+            <ToneModeSwitcher />
+            <SignOutButton />
+          </div>
         </header>
         <MetricsPanel />
         <TopTasksPanel />
