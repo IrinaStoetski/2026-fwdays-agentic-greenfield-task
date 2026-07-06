@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { StopButton } from "@/components/emergency-intercept/StopButton";
 import { EmergencyModal } from "@/components/emergency-intercept/EmergencyModal";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         {/* Pre-mounted on every route — D1 & D2 from design.md */}
         <StopButton />
         <EmergencyModal />
+        <ThemeProvider />
       </body>
     </html>
   );

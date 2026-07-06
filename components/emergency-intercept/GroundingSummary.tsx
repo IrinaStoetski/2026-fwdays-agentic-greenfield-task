@@ -11,8 +11,6 @@ interface Story {
   attribution?: string
 }
 
-// progress-logging store is not yet built — use this accessor once it ships.
-// For now, a zero-story stub is used so the fallback path always fires in MVP.
 function useUserStories(): Story[] {
   try {
     const useProgressStore = require('@/store/progress-logging')?.useProgressStore
@@ -24,7 +22,6 @@ function useUserStories(): Story[] {
 
 function pickStory(userStories: Story[]): Story {
   const pool = userStories.length > 0 ? userStories : FALLBACK_STORIES
-  // Deterministic: pick by current day-of-month index so it "rotates" daily.
   const idx = new Date().getDate() % pool.length
   return pool[idx]
 }
@@ -39,7 +36,6 @@ export function GroundingSummary({ onDone }: Props) {
   const userStories = useUserStories()
   const story = pickStory(userStories)
 
-  // Build a brief emotion label for the inline summary
   const emotionLabel = phase1Answer
     ? WIZARD_COPY.calm.phase1.options.find((o) => o.value === phase1Answer)?.label ?? ''
     : ''
@@ -47,22 +43,22 @@ export function GroundingSummary({ onDone }: Props) {
   return (
     <div className="flex flex-col flex-1 px-6 py-8 gap-6">
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold text-gray-900">{copy.summary.heading}</h1>
-        <p className="text-base text-gray-600">{copy.summary.subheading}</p>
+        <h1 className="text-[28px] font-bold leading-10 text-ds-text-primary">{copy.summary.heading}</h1>
+        <p className="text-[16px] leading-6 text-ds-text-secondary">{copy.summary.subheading}</p>
         {emotionLabel && (
-          <p className="text-sm text-gray-400">
-            You identified feeling: <span className="font-semibold text-gray-600">{emotionLabel}</span>
+          <p className="text-[12px] text-ds-text-tertiary">
+            You identified feeling: <span className="font-semibold text-ds-text-secondary">{emotionLabel}</span>
           </p>
         )}
       </div>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
+      <div className="bg-ds-surface border border-ds-border-light rounded-xl p-5">
+        <p className="text-[12px] font-semibold uppercase tracking-widest text-ds-text-tertiary mb-3">
           {copy.summary.storySectionLabel}
         </p>
-        <p className="text-sm text-gray-700 leading-relaxed italic">"{story.text}"</p>
+        <p className="text-[14px] text-ds-text-primary leading-5 italic">"{story.text}"</p>
         {story.attribution && (
-          <p className="text-xs text-gray-400 mt-2">— {story.attribution}</p>
+          <p className="text-[12px] text-ds-text-tertiary mt-2">— {story.attribution}</p>
         )}
       </div>
 
@@ -70,9 +66,9 @@ export function GroundingSummary({ onDone }: Props) {
         <button
           onClick={onDone}
           className="
-            w-full py-4 rounded-2xl bg-red-700 text-white font-bold text-base
-            hover:bg-red-800 active:bg-red-900
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400
+            w-full min-h-11 py-4 rounded-2xl bg-accent text-white font-bold text-[14px] leading-4.5
+            hover:bg-accent-hover active:bg-accent-hover
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ds-accent)/20
             transition-colors duration-150
           "
         >

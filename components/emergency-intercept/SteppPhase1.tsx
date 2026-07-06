@@ -15,8 +15,8 @@ export function SteppPhase1({ onNext }: Props) {
   return (
     <div className="flex flex-col flex-1 px-6 py-8 gap-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-gray-900">{copy.phase1.heading}</h1>
-        <p className="text-sm text-gray-500">{copy.phase1.subheading}</p>
+        <h1 className="text-[28px] font-bold leading-10 text-ds-text-primary">{copy.phase1.heading}</h1>
+        <p className="text-[14px] text-ds-text-secondary">{copy.phase1.subheading}</p>
       </div>
 
       <ul className="flex flex-col gap-3" role="radiogroup" aria-label={copy.phase1.heading}>
@@ -29,13 +29,13 @@ export function SteppPhase1({ onNext }: Props) {
                 aria-checked={selected}
                 onClick={() => setPhase1Answer(opt.value as Emotion)}
                 className={`
-                  w-full text-left px-5 py-4 rounded-2xl border-2 font-medium text-base
+                  w-full min-h-11 text-left px-5 py-4 rounded-2xl border-2 font-medium text-[16px] leading-6
                   transition-colors duration-150
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400
+                  focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-(--ds-accent)/10
                   ${
                     selected
-                      ? 'border-red-600 bg-red-50 text-red-800'
-                      : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'
+                      ? 'border-accent bg-(--ds-focus-ring) text-ds-text-primary'
+                      : 'border-ds-border-medium bg-white text-ds-text-primary hover:border-ds-border-medium'
                   }
                 `}
               >
@@ -52,10 +52,10 @@ export function SteppPhase1({ onNext }: Props) {
           disabled={!phase1Answer}
           aria-disabled={!phase1Answer}
           className="
-            w-full py-4 rounded-2xl bg-red-700 text-white font-bold text-base
+            w-full min-h-11 py-4 rounded-2xl bg-accent text-white font-bold text-[14px] leading-4.5
             disabled:opacity-40 disabled:cursor-not-allowed
-            hover:bg-red-800 active:bg-red-900
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400
+            hover:bg-accent-hover active:bg-accent-hover
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ds-accent)/20
             transition-colors duration-150
           "
         >

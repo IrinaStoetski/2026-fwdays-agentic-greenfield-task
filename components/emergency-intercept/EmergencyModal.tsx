@@ -54,7 +54,6 @@ export function EmergencyModal() {
   }, [isOpen, isWizardInProgress])
 
   // Mark background inert when modal is open.
-  // Target #main-content only — setting inert on body would make the modal itself inert too.
   useEffect(() => {
     const main = document.getElementById('main-content')
     if (!main) return
@@ -88,20 +87,15 @@ export function EmergencyModal() {
       aria-modal="true"
       aria-label={copy.modalTitle}
       ref={modalRef}
-      // Pre-mounted; visibility toggled via CSS — not conditional render (D2)
       style={{
         display: isOpen ? 'flex' : 'none',
-        // iOS Safari 100dvh fallback
         height: '100dvh',
       }}
-      className="
-        fixed inset-0 z-[100]
-        flex-col bg-white overflow-y-auto
-      "
+      className="fixed inset-0 z-100 flex-col bg-white overflow-y-auto"
     >
       {/* Header bar */}
-      <div className="flex items-center justify-between px-4 pt-4 pb-2 border-b border-gray-200">
-        <span className="text-sm font-semibold text-red-700 uppercase tracking-widest">
+      <div className="flex items-center justify-between px-4 pt-4 pb-2 border-b border-ds-border-light">
+        <span className="text-[14px] font-semibold leading-4.5 text-accent uppercase tracking-widest">
           {copy.modalTitle}
         </span>
         <button
@@ -109,8 +103,8 @@ export function EmergencyModal() {
           onClick={handleCloseRequest}
           aria-label="Close reflection wizard"
           className="
-            p-2 rounded-full text-gray-500 hover:text-gray-800
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400
+            min-h-11 min-w-11 p-2 rounded-full text-ds-text-secondary hover:text-ds-text-primary
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ds-accent)/20
           "
         >
           ✕
@@ -130,22 +124,19 @@ export function EmergencyModal() {
           role="alertdialog"
           aria-modal="true"
           aria-labelledby="exit-heading"
-          className="
-            absolute inset-0 z-10 flex items-center justify-center
-            bg-black/60 px-6
-          "
+          className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 px-6"
         >
-          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl">
-            <h2 id="exit-heading" className="text-lg font-bold text-gray-900 mb-2">
+          <div className="bg-white rounded-xl border border-ds-border-light shadow-card-hover p-6 w-full max-w-sm">
+            <h2 id="exit-heading" className="text-xl font-semibold leading-7 text-ds-text-primary mb-2">
               {copy.exitConfirm.heading}
             </h2>
-            <p className="text-sm text-gray-600 mb-6">{copy.exitConfirm.body}</p>
+            <p className="text-[14px] text-ds-text-secondary mb-6">{copy.exitConfirm.body}</p>
             <div className="flex gap-3">
               <button
                 onClick={handleConfirmExit}
                 className="
-                  flex-1 py-3 rounded-xl bg-red-700 text-white font-semibold text-sm
-                  hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400
+                  flex-1 min-h-11 py-3 rounded-xl bg-accent text-white font-semibold text-[14px] leading-4.5
+                  hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ds-accent)/20
                 "
               >
                 {copy.exitConfirm.confirmLabel}
@@ -153,8 +144,8 @@ export function EmergencyModal() {
               <button
                 onClick={handleCancelExit}
                 className="
-                  flex-1 py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold text-sm
-                  hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400
+                  flex-1 min-h-11 py-3 rounded-xl border border-ds-border-medium text-ds-text-primary font-semibold text-[14px] leading-4.5
+                  hover:bg-ds-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ds-border-medium
                 "
               >
                 {copy.exitConfirm.cancelLabel}
