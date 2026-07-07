@@ -22,6 +22,6 @@ Once authenticated, users need a grounding home screen that surfaces their recov
 
 - **New files**: `app/page.tsx` (or route group), dashboard React components, TanStack Query hook for Top 3 tasks, universal fallback story data, Zustand selector for streak/lifetime.
 - **Reads from**: `progress-logging` Zustand slice (streak, lifetime counter, user stories).
-- **Depends on**: `tone-engine` (all user-facing copy), `auth-onboarding` (route is protected; redirect to sign-in if unauthenticated).
+- **Depends on**: `tone-engine` (all user-facing copy).
 - **No breaking changes** to existing capabilities.
 - **Offline**: metrics and tasks are cached via TanStack Query; fallback stories are static and always available.

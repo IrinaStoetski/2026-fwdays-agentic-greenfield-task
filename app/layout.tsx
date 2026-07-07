@@ -4,7 +4,6 @@ import "./globals.css";
 import { StopButton } from "@/components/emergency-intercept/StopButton";
 import { EmergencyModal } from "@/components/emergency-intercept/EmergencyModal";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { AuthProvider } from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,14 +31,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <AuthProvider>
         {/* id="main-content" is targeted by EmergencyModal to set inert on background */}
         <div id="main-content" className="flex flex-col flex-1">{children}</div>
         {/* Pre-mounted on every route — D1 & D2 from design.md */}
         <StopButton />
         <EmergencyModal />
         <ThemeProvider />
-        </AuthProvider>
       </body>
     </html>
   );

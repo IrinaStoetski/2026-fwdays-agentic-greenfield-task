@@ -8,6 +8,10 @@ tone_instructions: "Ментор курсу Agentic Engineering (greenfield). У
 reviews:
   profile: "assertive"
   request_changes_workflow: false
+  # Vendored third-party skill pack (source in skills-lock.json) — kept in the
+  # repo but excluded from review; it is not the student's authored work.
+  path_filters:
+    - "!.agents/**"
   high_level_summary: true
   poem: false
   auto_review:

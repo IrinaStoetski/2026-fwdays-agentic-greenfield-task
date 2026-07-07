@@ -4,18 +4,18 @@ Derived from `docs/product-brief.md` and `docs/requirements.md`.
 
 ## Overview
 
-The MVP splits into 6 capabilities. `tone-engine` is cross-cutting — every other capability depends on it for copy.
+The MVP splits into 5 capabilities. `tone-engine` is cross-cutting — every other capability depends on it for copy.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        BYE BINGE MVP                            │
 │                                                                 │
-│  ┌──────────────────┐    ┌──────────────────────────────────┐   │
-│  │  auth-onboarding │    │          tone-engine             │   │
-│  │                  │    │   (cross-cutting — used by all)  │   │
-│  │  FR-ONB-01/02    │    │   FR-TONE-01–04 · BC-BRAND-01    │   │
-│  │  BC-PRIVACY-01   │    │   TC-TEXT-01 · Zustand state     │   │
-│  └──────────────────┘    └──────────────────────────────────┘   │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │                      tone-engine                         │   │
+│  │              (cross-cutting — used by all)               │   │
+│  │        FR-TONE-01–04 · BC-BRAND-01 · TC-TEXT-01          │   │
+│  │                     Zustand state                        │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                                                                 │
 │  ┌──────────────────────────────────────────────────────────┐   │
 │  │                 emergency-intercept                      │   │
@@ -48,7 +48,6 @@ The MVP splits into 6 capabilities. `tone-engine` is cross-cutting — every oth
 
 | Capability | Core scope | Requirements |
 |---|---|---|
-| `auth-onboarding` | Supabase auth, sign-up/sign-in, first-visit guided flow with tone intro | FR-ONB-01/02, BC-PRIVACY-01 |
 | `tone-engine` | Language toggle, 3 hardcoded persona variants, Zustand `activeToneMode`, exclamation rules | FR-TONE-01–04, BC-BRAND-01, TC-TEXT-01 |
 | `emergency-intercept` | Fixed STOP button, full-screen modal, STEPP 3-phase wizard, grounding summary, safe exit, draft persistence | FR-STOP-01–04, FR-REFL-01–05, NFR-PERF-01 |
 | `progress-logging` | Daily binge-free check-in, success story entries, streak + lifetime counter logic | FR-LOG-01–03, FR-DASH-02 |
